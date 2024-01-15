@@ -1,19 +1,22 @@
+import uuid
 from queue import Queue
+
 
 #Створити чергу заявок
 queue = Queue()
+counterID = 0.00
 
 def generate_request():
-    for id in range (1, 6):
-        new_appl = f"Заявка {id}"
-        queue.put(new_appl)
-        print (f"Створено нову заявку: {new_appl}")
-
+    request_id = str(uuid.uuid4())
+    new_request = {'id': request_id, 'data': 'Request information'}
+    queue.put(new_request)
+    print (f"Створено нову заявку: {new_request}")
+        
 #Обробити заявку    
 def process_request():
     if not queue.empty():
         appl = queue.get()
-        print (f"Обробка заявки: {appl}")
+        print (f"Обробка заявки: {new_request}")
     else:
         print("Черга порожня. Очікуємо на нові заявки.")  
 
